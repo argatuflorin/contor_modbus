@@ -1,20 +1,26 @@
-Conectarea pinilor în proiect
-🔹 ESP32 ↔ MAX485 (Modul RS-485)
-Componentă	Pin ESP32	Pin MAX485	Descriere
-TX (transmitere date)	GPIO17 (TX2)	DI (Data In)	Transmiterea datelor seriale
-RX (recepție date)	GPIO16 (RX2)	RO (Receiver Out)	Recepționarea datelor seriale
-Control TX/RX	GPIO4	DE + RE (lipite)	Activare transmisie/recepție
-GND	GND	GND	Masă comună
-5V / 3.3V	3.3V sau 5V*	VCC	Alimentare MAX485
+🔌 Conectarea pinilor în proiect
 
-ℹ️ *Majoritatea modulelor MAX485 pot funcționa cu 5V, dar dacă folosești un MAX485 compatibil cu 3.3V logic, poți folosi direct 3.3V de la ESP32. Altfel, se recomandă un convertor de nivel logic.
+🟦 ESP32 către MAX485 (Modul RS-485)
 
-🔹 MAX485 ↔ Janitza UMG104 (interfață RS-485)
-MAX485 Pin	Janitza UMG104
-A	A
-B	B
-GND	GND (opțional, dar recomandat pentru referință comună)
+GPIO17 (TX2) → DI (Data In) — transmite date de la ESP32 către MAX485
 
-🔹 Alte conexiuni (alimentare generală ESP32)
-Dispozitiv	Sursă	Tensiune
-ESP32	Hi-Link / USB / Alimentare 5V	5V stabilizat
+GPIO16 (RX2) → RO (Receiver Out) — primește date de la MAX485
+
+GPIO4 → DE și RE (legate împreună) — controlează direcția comunicației (transmitere/recepție)
+
+GND → GND — masă comună
+
+3.3V sau 5V → VCC — alimentarea modulului MAX485 (în funcție de versiune)
+
+Notă: dacă modulul MAX485 nu suportă logică pe 3.3V, se recomandă alimentare cu 5V și folosirea unui convertor de nivel logic pentru pinii TX/RX.
+
+🟧 MAX485 către Janitza UMG104 (prin interfață RS-485)
+A (MAX485) → A (Janitza)
+
+B (MAX485) → B (Janitza)
+
+GND (opțional) → GND (Janitza) — pentru referință comună
+
+⚡️ Alimentarea generală
+ESP32 este alimentat de la un modul Hi-Link 5V, de la port USB sau de la o sursă stabilizată externă
+
